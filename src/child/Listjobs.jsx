@@ -8,7 +8,6 @@ import { allJobs } from './jobs';
 import Link from '@mui/material/Link';
 import { useParams } from 'react-router-dom';
 import ViewJob from './Job';
-// import { useLoaderData } from 'react-router-dom';
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? 'rgb(150,150,150)' : 'rgb(210,210,255)',
   ...theme.typography.body2,

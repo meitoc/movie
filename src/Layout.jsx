@@ -2,7 +2,6 @@ import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import { Link, Outlet } from 'react-router-dom';
 import Box from '@mui/material/Box';
-// import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
@@ -23,13 +22,10 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import FolderSharedIcon from '@mui/icons-material/FolderShared';
 import MailIcon from '@mui/icons-material/Mail';
-import TopMenuSearch from './TopMenu';
-
 import Drawer from '@mui/material/Drawer';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-// import { light } from "@mui/material/styles/createPalette";
-// import { useState, useContext, createContext } from 'react';
 
+import TopMenuSearch from './TopMenu';
 
 let drawerWidth = 240;
 
