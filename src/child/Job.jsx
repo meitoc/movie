@@ -12,11 +12,6 @@ export default function ViewJob(data) {
     const {darkMode}=useContext(ContextDarkMode);
   return (
     <Card sx={{backgroundColor: darkMode ? 'rgb(150,150,150)' : 'rgb(210,210,255)'}}>
-      {/* <CardMedia
-        sx={{ height: 140 }}
-        image="/static/images/cards/contemplative-reptile.jpg"
-        title="green iguana"
-      /> */}
       <CardContent>
         <Typography gutterBottom variant="h4" component="div">
           {data.job.title}
