@@ -25,7 +25,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import Drawer from '@mui/material/Drawer';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-import TopMenuSearch from './TopMenu';
+import TopMenuSearch from './TopMenuSearch';
 
 let drawerWidth = 240;
 
