@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Pagination from '@mui/material/Pagination';
 import { allJobs } from './jobs';
-import Link from '@mui/material/Link';
+import {Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import ViewJob from './Job';
 const Item = styled(Paper)(({ theme }) => ({
@@ -51,7 +51,7 @@ export default function ListJobs() {
               {jobs.map((job, index) => (
                 index>=((page-1)*5) && index<(page*5)?(
                   <Grid item xs={2} sm={4} md={4} key={index} >
-                    <Link href={`jobs/${job.id}`} underline="none" >
+                    <Link to={`jobs/${job.id}`} style={{textDecoration: "none"}}>
                       <Item>
                         <h3>{job.title}</h3>
                         <div>
