@@ -1,3 +1,6 @@
+
+import { useContext } from "react";
+import { ContextStatus } from "../App";
 export function News() {
     return (<>
     <p>Welcome to <b>GoJob</b> - the premier job search platform for the tech industry! If you&apos;re looking for a career in information technology, programming, software development, or any other tech-related field, then you&apos;ve come to the right place.</p>
@@ -5,16 +8,24 @@ export function News() {
     <p>Whether you&apos;re just starting out in your tech career or you&apos;re looking to take the next step, <b>GoJob</b> has everything you need to succeed. So why wait? Sign up today and start exploring the exciting world of tech job opportunities!</p>
     </>);
 }
+// chang this function later for security
 export function Profile() {
-    return (<>
+    const {loginStatus} = useContext(ContextStatus);
+    return (loginStatus?
+    <>
         <p>Name: ABC</p>
         <p>Sex: male</p>
         <p>Skills: PHP, JS, C</p>
-    </>);
+    </>
+    :
+    <p>{`You can't access thispage! Please log in!`}</p>);
 }
 export function Interviews() {
-    return (<p>You received 5 interview invites.</p>);
-}
-export function Logout() {
-    return (<p>Logout</p>);
+    const {loginStatus} = useContext(ContextStatus);
+    return (
+        loginStatus?
+        <p>You received 5 interview invites.</p>
+        :
+        <p>{`You can't access thispage! Please log in!`}</p>
+    );
 }

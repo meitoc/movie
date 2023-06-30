@@ -5,45 +5,59 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
-import { News , Profile , Interviews , Logout } from "./child/Content";
-import { Setting } from "./child/Setting";
-import ListJobs from "./child/Listjobs";
-import Layout from "./Layout";
+import { News , Profile , Interviews } from "./components/Content";
+import Login from "./components/Login";
+import Logout from "./components/Logout";
+import { Setting } from "./components/Setting";
+import ListJobs from "./components/Listjobs";
+import App from "./App";
 import ErrorPage from "./ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: <App />,
     errorElement: <ErrorPage />,
     children: [
       {
         path: "",
         element: <ListJobs />,
+        errorElement: <ErrorPage />,
       },
       {
         path: "jobs/:jobId",
         element: <ListJobs />,
+        errorElement: <ErrorPage />,
       },
       {
         path: "news",
         element: <News />,
+        errorElement: <ErrorPage />,
       },
       {
         path: "profile",
         element: <Profile />,
+        errorElement: <ErrorPage />,
       },
       {
         path: "interviews",
         element: <Interviews />,
+        errorElement: <ErrorPage />,
       },
       {
         path: "setting",
         element: <Setting />,
+        errorElement: <ErrorPage />,
       },
       {
         path: "logout",
         element: <Logout />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+        errorElement: <ErrorPage />,
       },
     ]
   },

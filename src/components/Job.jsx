@@ -7,11 +7,13 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useContext } from 'react';
-import { ContextDarkMode } from '../Layout';
+import { ContextStatus } from '../App';
 export default function ViewJob(data) {
-    const {darkMode}=useContext(ContextDarkMode);
+  const {darkMode,setLoginFormOpen, loginStatus}=useContext(ContextStatus);
+  if(loginStatus!==true) setLoginFormOpen(true);//check login
   return (
-    <Card sx={{backgroundColor: darkMode ? 'rgb(150,150,150)' : 'rgb(210,210,255)'}}>
+    loginStatus?
+    <Card sx={{backgroundColor: darkMode ? 'rgb(10,100,100)' : 'rgb(210,210,255)'}}>
       <CardContent>
         <Typography gutterBottom variant="h4" component="div">
           {data.job.title}
@@ -42,5 +44,7 @@ export default function ViewJob(data) {
         <Button size="big" sx={{backgroundColor:'rgb(255,255,255)', color:'rgb(50,50,100)'}}>About the Employer</Button>
       </CardActions>
     </Card>
+    :
+    ""
   );
 }
