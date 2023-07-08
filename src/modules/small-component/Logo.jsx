@@ -4,7 +4,7 @@ export function Logo () {
         style={{margin: "5px"}}
         width="45px"
         height="45px"
-            src={"../public/logo.png"}>
+            src={"../public/logo.svg"}>
         </img>
     )
 }
