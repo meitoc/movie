@@ -1,6 +1,7 @@
 import Switch from '@mui/material/Switch';
 import { useContext } from 'react';
 import { ContextStatus } from '../App';
+
 export function Setting() {
     const {darkMode, setDarkMode} = useContext(ContextStatus);
     return (<>

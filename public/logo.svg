@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="2in"
+   height="2in"
+   viewBox="0 0 192 192"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="logo.png"
+   inkscape:export-xdpi="40"
+   inkscape:export-ydpi="40"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="in"
+     showgrid="false"
+     inkscape:zoom="1.3671875"
+     inkscape:cx="22.674286"
+     inkscape:cy="128"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer2" />
+  <defs
+     id="defs2">
+    <rect
+       x="11.702857"
+       y="53.76"
+       width="251.81751"
+       height="152.7197"
+       id="rect63" />
+    <rect
+       x="11.702857"
+       y="53.759998"
+       width="251.8175"
+       height="152.7197"
+       id="rect63-2" />
+    <rect
+       x="11.702857"
+       y="53.759998"
+       width="251.8175"
+       height="152.7197"
+       id="rect63-2-5" />
+    <rect
+       x="11.702857"
+       y="53.759998"
+       width="251.8175"
+       height="152.7197"
+       id="rect63-2-5-4" />
+    <rect
+       x="11.702857"
+       y="53.759998"
+       width="251.8175"
+       height="152.7197"
+       id="rect63-2-6" />
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 2"
+     style="display:inline">
+    <path
+       style="display:inline;fill:#ffaacc;stroke:#dddafc;stroke-width:0;stroke-dasharray:none;stroke-opacity:0.859606"
+       d="m 11.144174,142.43758 c 0,0 -20.2764717,-41.86059 -6.1284949,-73.053077 C 19.163656,38.192012 23.554406,40.172487 22.578685,29.774991 21.602962,19.377494 30.384465,6.9995218 30.384465,6.9995218 c 0,0 18.585119,-14.768904 38.587432,-1.4006939 20.002311,13.3682111 -0.534253,24.1761631 11.662279,25.1664011 12.196532,0.990237 41.956054,4.45607 41.956054,4.45607 l 28.29596,-5.446308 c 0,0 15.61157,1.485357 20.00233,6.931665 4.39074,5.446308 16.09939,16.834042 16.09939,16.834042 0,0 9.75725,0.990239 1.95146,40.104631 -7.80576,39.114401 -24.88092,25.746181 -24.88092,46.046061 0,20.29988 10.73294,23.76569 -1.4636,32.67785 -12.19652,8.91214 -85.863564,-1.98047 -85.863564,-1.98047 0,0 -3.41503,18.81452 -18.538728,21.2901 -15.1237,2.4756 -28.335312,-12.92454 -33.167533,-17.55367 C 6.3197544,156.20606 11.144174,142.43758 11.144174,142.43758 Z"
+       id="path1776"
+       sodipodi:nodetypes="csscssccscssscssc" />
+    <text
+       xml:space="preserve"
+       id="text61"
+       style="font-size:36.2634px;white-space:pre;shape-inside:url(#rect63);shape-padding:0;display:inline;fill:#000000"
+       transform="matrix(1.8872858,0,0,1.7907833,-16.061035,-54.831267)"><tspan
+         x="11.703125"
+         y="96.735506"
+         id="tspan261"><tspan
+           style="font-family:'Franklin Gothic Demi Cond';-inkscape-font-specification:'Franklin Gothic Demi Cond';fill:#800033"
+           id="tspan257">STOR</tspan><tspan
+           style="font-size:47.1424px"
+           id="tspan259">e</tspan></tspan></text>
+  </g>
+</svg>

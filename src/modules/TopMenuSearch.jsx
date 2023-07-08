@@ -1,8 +1,13 @@
-// import * as React from 'react';
+import { useState } from 'react';
+import { useContext } from 'react';
+
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+
+import { ContextStatus } from '../App';
+
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -46,6 +51,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function TopMenuSearch() {
+  const {setSearchInput}=useContext(ContextStatus)
+  const [showInput, setShowInput]=useState("");
   return (
     <Box>
       <Search>
@@ -55,6 +62,17 @@ export default function TopMenuSearch() {
         <StyledInputBase
           placeholder="Search…"
           inputProps={{ 'aria-label': 'search' }}
+          onChange={(event)=>{
+            setShowInput(event.target.value);
+          }}
+          value={showInput}
+          onKeyUp={(event)=>{
+            // console.log(event);
+            if(event.code==="Enter") {
+                console.log(showInput);
+                setSearchInput(showInput);
+            }
+          }}
         />
       </Search>
     </Box>

@@ -5,11 +5,13 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
-import { News , Profile , Interviews } from "./components/Content";
-import Login from "./components/Login";
-import Logout from "./components/Logout";
-import { Setting } from "./components/Setting";
-import ListJobs from "./components/Listjobs";
+// import HotDeals from "./pages/Hotdeals";
+import Account from "./pages/Account";
+import { Cart } from "./pages/Cart";
+import Login from "./pages/Login";
+import Logout from "./pages/Logout";
+import { Setting } from "./pages/Setting";
+import Products from "./pages/Products";
 import App from "./App";
 import ErrorPage from "./ErrorPage";
 
@@ -21,27 +23,27 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <ListJobs />,
+        element: <Products />,
         errorElement: <ErrorPage />,
       },
       {
-        path: "jobs/:jobId",
-        element: <ListJobs />,
+        path: "products/:productId",
+        element: <Products />,
+        errorElement: <ErrorPage />,
+      },
+      // {
+      //   path: "hotdeals",
+      //   element: <HotDeals />,
+      //   errorElement: <ErrorPage />,
+      // },
+      {
+        path: "account",
+        element: <Account />,
         errorElement: <ErrorPage />,
       },
       {
-        path: "news",
-        element: <News />,
-        errorElement: <ErrorPage />,
-      },
-      {
-        path: "profile",
-        element: <Profile />,
-        errorElement: <ErrorPage />,
-      },
-      {
-        path: "interviews",
-        element: <Interviews />,
+        path: "cart",
+        element: <Cart />,
         errorElement: <ErrorPage />,
       },
       {
