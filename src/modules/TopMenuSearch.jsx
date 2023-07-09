@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { useContext } from 'react';
+// import { useContext } from 'react';
 
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 
-import { ContextStatus } from '../App';
+// import { ContextStatus } from '../App';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -51,7 +51,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function TopMenuSearch() {
-  const {setSearchInput}=useContext(ContextStatus)
+  // const {setSearchInput}=useContext(ContextStatus)
   const [showInput, setShowInput]=useState("");
   const [test, setTest]=useState("AAA");
   return (
@@ -72,7 +72,7 @@ export default function TopMenuSearch() {
             setTest(event.code);//test
             if(event.code==="Enter") {
                 console.log(showInput);
-                setSearchInput(showInput);
+                // setSearchInput(showInput);
             }
           }}
         />
