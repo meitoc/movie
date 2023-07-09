@@ -12,6 +12,7 @@ export default function Login() {
   } else{
     history.push("/");
     // history.back();
+    window.location.reload();
     return(<Link to={"/"}><p>Goto Home page</p></Link>);
   }
 }
