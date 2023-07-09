@@ -1,11 +1,11 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { ContextStatus } from "../App";
 import { createBrowserHistory } from "history";
 import axios from 'axios';
 
 export default function Logout() {
     const { loginStatus,setLoginStatus, setLoginSession} = React.useContext(ContextStatus);
-    const noticeLogout ="Wait....";
     const history = createBrowserHistory();
     const requestLogout = async (session) => {
         axios({
@@ -39,7 +39,7 @@ export default function Logout() {
         history.push("/");
         history.back();
     }
-    return(<p>{noticeLogout}</p>);
+    return(<Link to={"/"}><p>Goto Home page</p></Link>);
     //Need fetching request that create new session code to server
     
 }

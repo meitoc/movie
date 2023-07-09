@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { ContextStatus } from "../App";
 import { createBrowserHistory } from "history";
 import { AuthenCheck } from '../features/authentication/AuthenCheck';
@@ -11,6 +12,6 @@ export default function Login() {
   } else{
     history.push("/");
     history.back();
-    return(<p>Goto Home page</p>);
+    return(<Link to={"/"}><p>Goto Home page</p></Link>);
   }
 }
