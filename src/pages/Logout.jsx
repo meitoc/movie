@@ -19,13 +19,13 @@ export default function Logout() {
                 localStorage.setItem('loginSession',"");
                 setLoginStatus(false);
                 setLoginSession("");
-                history.replace("/");
-                // history.back();
+                history.push("/");
+                history.back();
             } else{
                 setLoginStatus(false);//new
                 setLoginSession("");
-                history.replace("/");
-                // history.back();
+                history.push("/");
+                history.back();
             }
         })
         .catch(error => {
@@ -36,8 +36,8 @@ export default function Logout() {
     
     requestLogout(localStorage.getItem('loginSession'));
     if(loginStatus!==true){
-        history.replace("/");
-        // history.back();
+        history.push("/");
+        history.back();
     }
     return(<p>{noticeLogout}</p>);
     //Need fetching request that create new session code to server
