@@ -20,12 +20,12 @@ export default function Logout() {
                 setLoginStatus(false);
                 setLoginSession("");
                 history.push("/");
-                history.back();
+                // history.back();
             } else{
                 setLoginStatus(false);//new
                 setLoginSession("");
                 history.push("/");
-                history.back();
+                // history.back();
             }
         })
         .catch(error => {
@@ -37,7 +37,7 @@ export default function Logout() {
     requestLogout(localStorage.getItem('loginSession'));
     if(loginStatus!==true){
         history.push("/");
-        history.back();
+        // history.back();
     }
     return(<Link to={"/"}><p>Goto Home page</p></Link>);
     //Need fetching request that create new session code to server

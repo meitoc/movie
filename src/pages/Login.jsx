@@ -11,7 +11,7 @@ export default function Login() {
   return(<AuthenCheck></AuthenCheck>)
   } else{
     history.push("/");
-    history.back();
+    // history.back();
     return(<Link to={"/"}><p>Goto Home page</p></Link>);
   }
 }
