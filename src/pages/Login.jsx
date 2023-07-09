@@ -11,5 +11,6 @@ export default function Login() {
   } else{
     history.push("/");
     history.back();
+    return(<p>Goto Home page</p>);
   }
 }

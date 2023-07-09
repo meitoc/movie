@@ -56,19 +56,18 @@ export default function NavigationList() {
             <List>
                 {navList.map((element) => (
                     (element.viewByLogin===undefined) || !(element.viewByLogin===true ^ loginStatus) ?(
-                            <ListItem key={element.text} disablePadding sx={{ display: 'block' }} 
+                        <ListItem key={element.text} disablePadding sx={{ display: 'block' }} 
+                        >
+                            <Link to={element.link}
+                            style={{ textDecoration: 'none' }}
+                            onClick={()=>{
+                                if(mobile) handleDrawerClose();
+                            }}
                             >
-                                <Link to={element.link}
-                                style={{ textDecoration: 'none' }}
-                                onClick={()=>{
-                                    if(mobile) handleDrawerClose();
-                                }}
-                                >
-                                    <ListItemInside text={element.text} icon={element.icon} />
-                                </Link>
-                                {element.child!==undefined? element.child : ""}
-                            </ListItem>
-                            
+                                <ListItemInside text={element.text} icon={element.icon} />
+                            </Link>
+                            {element.child!==undefined? element.child : ""}
+                        </ListItem>
                     )
                     :
                     ""

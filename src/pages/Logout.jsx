@@ -19,11 +19,13 @@ export default function Logout() {
                 localStorage.setItem('loginSession',"");
                 setLoginStatus(false);
                 setLoginSession("");
-                history.push(".");
+                history.push("/");
                 history.back();
             } else{
                 setLoginStatus(false);//new
                 setNoticeLogout( "Something went wrong. Please reload the page!");
+                history.push("/");
+                history.back();
             }
         })
         .catch(error => {
