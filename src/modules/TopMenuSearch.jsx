@@ -53,8 +53,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function TopMenuSearch() {
   const {setSearchInput}=useContext(ContextStatus)
   const [showInput, setShowInput]=useState("");
+  const [test, setTest]=useState("");
   return (
     <Box>
+        <p>{test}</p>
       <Search>
         <SearchIconWrapper>
           <SearchIcon />
@@ -62,12 +64,12 @@ export default function TopMenuSearch() {
         <StyledInputBase
           placeholder="Search…"
           inputProps={{ 'aria-label': 'search' }}
-          // onChange={(event)=>{
-          //   setShowInput(event.target.value);
-          // }}
+          onChange={(event)=>{
+            setShowInput(event.target.value);
+          }}
           value={showInput}
           onKeyUp={(event)=>{
-            setShowInput(event.code);
+            setTest(event.code);//test
             if(event.code==="Enter") {
                 console.log(showInput);
                 setSearchInput(showInput);
