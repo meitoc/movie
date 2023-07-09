@@ -5,7 +5,7 @@ import { createBrowserHistory } from "history";
 import axios from 'axios';
 
 export default function Logout() {
-    const { loginStatus,setLoginStatus, setLoginSession} = React.useContext(ContextStatus);
+    const { setLoginStatus, setLoginSession} = React.useContext(ContextStatus);
     const history = createBrowserHistory();
     const requestLogout = async (session) => {
         axios({
@@ -21,11 +21,13 @@ export default function Logout() {
                 setLoginSession("");
                 history.push("/");
                 // history.back();
+                window.location.reload();
             } else{
                 setLoginStatus(false);//new
                 setLoginSession("");
                 history.push("/");
                 // history.back();
+                window.location.reload();
             }
         })
         .catch(error => {
@@ -35,10 +37,9 @@ export default function Logout() {
     }
     
     requestLogout(localStorage.getItem('loginSession'));
-    if(loginStatus!==true){
         history.push("/");
         // history.back();
-    }
+        window.location.reload();
     return(<Link to={"/"}><p>Goto Home page</p></Link>);
     //Need fetching request that create new session code to server
     
