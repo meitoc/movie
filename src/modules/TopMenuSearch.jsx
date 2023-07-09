@@ -68,7 +68,7 @@ export default function TopMenuSearch() {
           value={showInput}
           onKeyUp={(event)=>{
             alert(`test${event.code}`);
-            if(event.code==="Enter") {
+            if((event.code==="Enter")||(event.code==="ArrowRight")) {
                 console.log(showInput);
                 setSearchInput(showInput);
             }
