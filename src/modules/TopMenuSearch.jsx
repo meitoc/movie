@@ -56,9 +56,9 @@ export default function TopMenuSearch() {
   const [test, setTest]=useState("");
   return (
     <Box>
-        <p>{test}</p>
       <Search>
         <SearchIconWrapper>
+        <p>{test}</p>
           <SearchIcon />
         </SearchIconWrapper>
         <StyledInputBase
