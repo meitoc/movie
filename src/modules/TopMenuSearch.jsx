@@ -62,15 +62,15 @@ export default function TopMenuSearch() {
         <StyledInputBase
           placeholder="Search…"
           inputProps={{ 'aria-label': 'search' }}
-          onChange={(event)=>{
-            setShowInput(event.target.value);
-          }}
+          // onChange={(event)=>{
+          //   setShowInput(event.target.value);
+          // }}
           value={showInput}
           onKeyUp={(event)=>{
-            setSearchInput(event.code);
+            setShowInput(event.code);
             if(event.code==="Enter") {
                 console.log(showInput);
-                // setSearchInput(showInput);
+                setSearchInput(showInput);
             }
           }}
         />
