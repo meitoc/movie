@@ -9,8 +9,8 @@ export default function Login() {
   if(loginStatus!==true){
   return(<AuthenCheck></AuthenCheck>)
   } else{
-    history.push("/");
-    history.back();
+    history.replace("/");
+    // history.back();
     return(<p>Goto Home page</p>);
   }
 }
