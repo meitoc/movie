@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export default function Logout() {
     const { loginStatus,setLoginStatus, setLoginSession} = React.useContext(ContextStatus);
-    const [noticeLogout, setNoticeLogout] = React.useState("Wait....");
+    const noticeLogout ="Wait....";
     const history = createBrowserHistory();
     const requestLogout = async (session) => {
         axios({
@@ -23,7 +23,7 @@ export default function Logout() {
                 history.back();
             } else{
                 setLoginStatus(false);//new
-                setNoticeLogout( "Something went wrong. Please reload the page!");
+                setLoginSession("");
                 history.push("/");
                 history.back();
             }
