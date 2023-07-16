@@ -5,10 +5,10 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-import { ContextStatus } from '../../App';
+import { ContextSearch } from '../../pages/Search';
 
 export default function SortForm() {
-    const {setSortBy} = useContext(ContextStatus);
+    const {setSortBy} = useContext(ContextSearch);
     return(
         <FormControl sx={{ xl: 4, minWidth: 120 }}>
         <InputLabel id="demo-simple-select-autowidth-label">Sort</InputLabel>

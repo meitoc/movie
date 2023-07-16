@@ -16,7 +16,6 @@ import { Logo } from '../components/small-component/Logo';
 import Drawer from '@mui/material/Drawer';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-import TopMenuSearch from './modules/TopMenuSearch';
 import NavigationList from './modules/NavigationList';
 import AccountAvatar from './modules/AccountAvatar';
 
@@ -122,7 +121,6 @@ export default function Layout() {
                     <Box
                         sx={{display: "flex", flexWrap: "nowrap"}}
                     >
-                        <TopMenuSearch />
                         <AccountAvatar />
                     </Box>
                     </Toolbar>

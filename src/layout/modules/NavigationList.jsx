@@ -11,6 +11,9 @@ import LoginIcon from '@mui/icons-material/Login';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import SearchIcon from '@mui/icons-material/Search';
+
+import Divider from '@mui/material/Divider';
 
 import { ContextStatus } from '../../App';
 
@@ -23,10 +26,13 @@ export default function NavigationList() {
         {text:'Home page', link: "", icon: (<WhatshotIcon />)},
         {text:'Login to view more', link: "/login", icon: (<LoginIcon />), viewByLogin: false},
         {text:'Favorite', link: "/favorite", icon: (<FavoriteIcon />), viewByLogin: true},
+        {icon:(<Divider />)},
         {text:'Now Playing', link: "/movielists/nowplaying", icon: (<ArrowForwardIosIcon />), viewByLogin: true},
         {text:'Popular', link: "/movielists/popular", icon: (<ArrowForwardIosIcon />), viewByLogin: true},
         {text:'TopRated', link: "/movielists/top_rated", icon: (<ArrowForwardIosIcon />), viewByLogin: true},
         {text:'Upcoming', link: "/movielists/upcoming", icon: (<ArrowForwardIosIcon />), viewByLogin: true},
+        {icon:(<Divider />)},
+        {text:'Search', link: "/search", icon: (<SearchIcon />), viewByLogin: true},
     ];
     const ListItemInside = (prop)=>{
         return(
@@ -54,7 +60,9 @@ export default function NavigationList() {
         <>
             <List>
                 {navList.map((element) => (
-                    (element.viewByLogin===undefined) || !(element.viewByLogin===true ^ loginStatus) ?(
+                    element.text===undefined?
+                    (element.icon)
+                    :(element.viewByLogin===undefined) || !(element.viewByLogin===true ^ loginStatus) ?(
                         <ListItem key={element.text} disablePadding sx={{ display: 'block' }} 
                         >
                             <Link to={element.link}

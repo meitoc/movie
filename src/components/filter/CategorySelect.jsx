@@ -7,10 +7,11 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
 import { ContextStatus } from '../../App';
-
+import { ContextSearch } from '../../pages/Search';
 
 export default function CategorySelect() {
-    const {mobile, setSelectCategory} = useContext(ContextStatus);
+    const {mobile} = useContext(ContextStatus);
+    const {setSelectCategory} = useContext(ContextSearch);
     const direction = mobile?"column": "row";
   return (
     <FormControl>
