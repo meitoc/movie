@@ -1,10 +1,8 @@
 import axios from "axios";
 import { useEffect,useContext} from "react";
 import { ContextStatus } from "../../App";
-// import { createBrowserHistory } from "history";
 
 export default function CheckSession (prop) {
-    // const history=createBrowserHistory();
     const { setLoginStatus, setServiceInfo} = useContext(ContextStatus);
     useEffect(()=>{
         async function checkLoginSession() {
@@ -44,9 +42,9 @@ export default function CheckSession (prop) {
         if (session !==null & session!==undefined) checkLoginSession();
         else setLoginStatus(false);
     },[setLoginStatus,setServiceInfo]);
-  return(
-    <>
-      {prop.children}
-    </>
-  );
+    return(
+        <>
+        {prop.children}
+        </>
+    );
 }
