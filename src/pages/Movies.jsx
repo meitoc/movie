@@ -5,8 +5,8 @@ import Box from '@mui/material/Box';
 
 import MovieDetail from './movies/MovieDetail';
 import MovieRecommend from './movies/MovieRecommend';
-// import FetchMovieList from '../features/fetch-data/FetchMovieList'
 import { AuthenCheck } from '../features/authentication/AuthenCheck';
+
 export default function Movies() {
   const { movieId } = useParams();
   console.log("movieId");

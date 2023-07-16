@@ -28,8 +28,7 @@ export default function CheckSession (prop) {
                     const themoviedb = data.data.services.find(item => item.service === "themoviedb");//load login info for layer 2
                     console.log("Website created a loggedin token");
                     setServiceInfo(themoviedb);
-                } 
-                else {
+                } else {
                     setLoginStatus(false);
                     // setLoginStatus(false);
                 }
@@ -42,8 +41,8 @@ export default function CheckSession (prop) {
             }); 
         }
         let session = localStorage.getItem('loginSession');
-            if (session !=null & session!==undefined) checkLoginSession();
-            else setLoginStatus(false);
+        if (session !==null & session!==undefined) checkLoginSession();
+        else setLoginStatus(false);
     },[setLoginStatus,setServiceInfo]);
   return(<>
       {prop.children}

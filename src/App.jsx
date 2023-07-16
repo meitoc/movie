@@ -1,11 +1,10 @@
 import * as React from 'react';
 import CheckSession from './features/authentication/CheckSession';
 import Layout from './layout/Layout';
-
 export const ContextStatus = React.createContext();
 
 export default function App() {
-    // const [reload, setReload] = React.useState(true);
+    const [reload, setReload] = React.useState(true);
     const [mobile, setMobile] = React.useState((parseInt(screen.width))<500);
     const [viewWidth, setViewWidth] = React.useState(screen.width);
     const [darkMode, setDarkMode] = React.useState (localStorage.getItem('darkMode')==='true');
@@ -21,7 +20,7 @@ export default function App() {
     const [selectCategory, setSelectCategory] = React.useState ("");
   
     // const [loginFormOpen, setLoginFormOpen] = React.useState(true);
-    // const [movieList, updateMovieList] = React.useState([]);//use for fetch data
+    const [movieList, updateMovieList] = React.useState([]);//use for fetch data
     const [showMovieList, setShowMovieList] = React.useState(null);//use for show data
     //User info
     const [userData, setUserData] = React.useState("");//use for show data
@@ -39,11 +38,11 @@ export default function App() {
         darkMode,setDarkMode,
         loginStatus,setLoginStatus,
         serviceInfo,setServiceInfo,
-        // movieList, updateMovieList,
+        movieList, updateMovieList,
         showMovieList, setShowMovieList,
         favoriteData, setFavoriteData,
         mobile,
-        // reload, setReload,
+        reload, setReload,
         sortBy, setSortBy,
         searchInput, setSearchInput,
         selectCategory, setSelectCategory,
