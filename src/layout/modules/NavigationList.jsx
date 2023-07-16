@@ -7,6 +7,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
+import LoginIcon from '@mui/icons-material/Login';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -18,7 +19,9 @@ import { ContextStatus } from '../../App';
 export default function NavigationList() {
     const {mobile, handleDrawerClose,loginStatus} = useContext(ContextStatus);
     const navList = [
+        // viewByLogin: true: only be shown when logged in / false: only be shown when logged out / not set: always be shown
         {text:'Home page', link: "", icon: (<WhatshotIcon />)},
+        {text:'Login to view more', link: "/login", icon: (<LoginIcon />), viewByLogin: false},
         {text:'Favorite', link: "/favorite", icon: (<FavoriteIcon />), viewByLogin: true},
         {text:'Now Playing', link: "/movielists/nowplaying", icon: (<ArrowForwardIosIcon />), viewByLogin: true},
         {text:'Popular', link: "/movielists/popular", icon: (<ArrowForwardIosIcon />), viewByLogin: true},
