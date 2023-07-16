@@ -5,7 +5,7 @@ import { ContextStatus } from "../../App";
 
 export default function CheckSession (prop) {
     // const history=createBrowserHistory();
-    const { loginStatus, setLoginStatus, setServiceInfo} = useContext(ContextStatus);
+    const { setLoginStatus, setServiceInfo} = useContext(ContextStatus);
     useEffect(()=>{
         async function checkLoginSession() {
             
@@ -20,13 +20,13 @@ export default function CheckSession (prop) {
                     setLoginStatus(true);
                     //
                     const themoviedb = data.data.services.find(item => item.service === "themoviedb");//load login info for layer 2
-                    console.log("Fakeapi.meitoc.net created a newtoken");
+                    console.log("Website created a newtoken");
                     setServiceInfo(themoviedb);
                     // setLoginStatus(true);
                 } else if(data.status==="loggedin"){
                     setLoginStatus(true);
                     const themoviedb = data.data.services.find(item => item.service === "themoviedb");//load login info for layer 2
-                    console.log("Fakeapi.meitoc.net created a loggedin token");
+                    console.log("Website created a loggedin token");
                     setServiceInfo(themoviedb);
                 } 
                 else {
@@ -45,8 +45,7 @@ export default function CheckSession (prop) {
             if (session !=null & session!==undefined) checkLoginSession();
             else setLoginStatus(false);
     },[setLoginStatus,setServiceInfo]);
-    if(loginStatus===null) return null;
- else return(<>
+  return(<>
       {prop.children}
   </>);
 }
