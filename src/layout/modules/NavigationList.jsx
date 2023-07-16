@@ -16,7 +16,7 @@ import { ContextStatus } from '../../App';
 
 
 export default function NavigationList() {
-    const {handleDrawerClose,loginStatus} = useContext(ContextStatus);
+    const {mobile, handleDrawerClose,loginStatus} = useContext(ContextStatus);
     const navList = [
         {text:'Home page', link: "", icon: (<WhatshotIcon />)},
         {text:'Favorite', link: "/favorite", icon: (<FavoriteIcon />), viewByLogin: true},
@@ -57,8 +57,8 @@ export default function NavigationList() {
                             <Link to={element.link}
                             style={{ textDecoration: 'none' , color: 'inherit'}}
                             onClick={()=>{
-                                // if(mobile) handleDrawerClose();//use only for mobile. when you enable this, please clear the line before, and add mobile to useContext
-                                handleDrawerClose();
+                                if(mobile) handleDrawerClose();//use only for mobile. when you enable this, please clear the line before, and add mobile to useContext
+                                // handleDrawerClose();
                             }}
                             >
                                 <ListItemInside text={element.text} icon={element.icon} />
