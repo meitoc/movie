@@ -8,6 +8,7 @@ export default function CheckSession (prop) {
     const { setLoginStatus, setServiceInfo} = useContext(ContextStatus);
     useEffect(()=>{
         async function checkLoginSession() {
+            
             axios({
                 method: 'get',
                 baseURL: 'https://fakeapi.meitoc.net',
@@ -40,9 +41,9 @@ export default function CheckSession (prop) {
                 // setLoginStatus(false);
             }); 
         }
-        let session = localStorage.getItem('loginSession')!==null;
-        if (session !=null & session!==undefined) checkLoginSession();
-        else setLoginStatus(false);
+        let session = localStorage.getItem('loginSession');
+            if (session !=null & session!==undefined) checkLoginSession();
+            else setLoginStatus(false);
     },[setLoginStatus,setServiceInfo]);
   return(<>
       {prop.children}
