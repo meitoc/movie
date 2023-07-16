@@ -5,7 +5,7 @@ import { ContextStatus } from "../../App";
 
 export default function CheckSession (prop) {
     // const history=createBrowserHistory();
-    const { setLoginStatus, setServiceInfo} = useContext(ContextStatus);
+    const { loginStatus, setLoginStatus, setServiceInfo} = useContext(ContextStatus);
     useEffect(()=>{
         async function checkLoginSession() {
             
@@ -45,7 +45,8 @@ export default function CheckSession (prop) {
             if (session !=null & session!==undefined) checkLoginSession();
             else setLoginStatus(false);
     },[setLoginStatus,setServiceInfo]);
-  return(<>
+    if(loginStatus===null) return null;
+ else return(<>
       {prop.children}
   </>);
 }
