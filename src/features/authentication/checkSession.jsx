@@ -2,10 +2,10 @@ import axios from "axios";
 import { useEffect,useContext} from "react";
 import { ContextStatus } from "../../App";
 // import { createBrowserHistory } from "history";
+
 export default function CheckSession (prop) {
     // const history=createBrowserHistory();
     const { setLoginStatus, setServiceInfo} = useContext(ContextStatus);
-    // const [login,setLogin] =useState(null);
     useEffect(()=>{
         async function checkLoginSession() {
             const session = localStorage.getItem('loginSession');
