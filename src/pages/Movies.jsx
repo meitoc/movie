@@ -1,11 +1,11 @@
 // import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import FetchFavorite from '../features/fetch-data/FetchFavorite';
 import Box from '@mui/material/Box';
 
 import MovieDetail from './movies/MovieDetail';
 import MovieRecommend from './movies/MovieRecommend';
 import { AuthenCheck } from '../features/authentication/AuthenCheck';
+import FetchFavorite from '../features/fetch-data/FetchFavorite';
 
 export default function Movies() {
   const { movieId } = useParams();
@@ -13,7 +13,7 @@ export default function Movies() {
   console.log(movieId);
   if(movieId===undefined)  {
     return(
-      <AuthenCheck>
+      <AuthenCheck loginForm={false} >
         <FetchFavorite>
           <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             <div  style={{display: "flex", flexDirection: "row", flexWrap: "nowrap", width: "100%"}}>
