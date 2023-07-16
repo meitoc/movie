@@ -42,9 +42,9 @@ export default function CheckSession (prop) {
         if (session !==null & session!==undefined) checkLoginSession();
         else setLoginStatus(false);
     },[setLoginStatus,setServiceInfo]);
-    return(
+    if(prop.children!=null) return(
         <>
         {prop.children}
         </>
-    );
+    ); else return null;
 }
