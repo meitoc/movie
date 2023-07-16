@@ -19,7 +19,7 @@ import AddToFavorite from '../../components/small-component/AddToFavorite';
 
 export default function MovieDetail(prop) {
   const {darkMode,serviceInfo,mobile}=useContext(ContextStatus);
-  const [movieInfo,setMovieInfo]=useState([]);
+  const [movieInfo,setMovieInfo]=useState(null);
   useEffect(()=>{
     const options = {
       method: 'GET',
@@ -39,7 +39,7 @@ export default function MovieDetail(prop) {
         console.error(err);
       });
 },[serviceInfo,prop,setMovieInfo]);
-if(movieInfo!==[])
+if(movieInfo!==null)
   return (
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={{ xs: 1, md: 2 }} columns={{ xs: 1, sm: 2, md: 2 }} >

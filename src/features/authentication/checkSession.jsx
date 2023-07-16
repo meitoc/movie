@@ -1,11 +1,11 @@
-import axios from "axios";
 import { useEffect,useContext} from "react";
 import { ContextStatus } from "../../App";
+import axios from "axios";
 
 export default function CheckSession (prop) {
     const { setLoginStatus, setServiceInfo} = useContext(ContextStatus);
     useEffect(()=>{
-        async function checkLoginSession() {
+        function checkLoginSession() {
             
             axios({
                 method: 'get',

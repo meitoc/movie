@@ -1,11 +1,10 @@
 import * as React from 'react';
 // import CheckSession from './features/authentication/CheckSession';
-import { AuthenCheck } from './features/authentication/AuthenCheck';
+// import { AuthenCheck } from './features/authentication/AuthenCheck';
 import Layout from './layout/Layout';
 export const ContextStatus = React.createContext();
 
 export default function App() {
-    const [reload, setReload] = React.useState(true);
     const [mobile, setMobile] = React.useState((parseInt(screen.width))<500);
     const [viewWidth, setViewWidth] = React.useState(screen.width);
     const [darkMode, setDarkMode] = React.useState (localStorage.getItem('darkMode')==='true');
@@ -43,16 +42,13 @@ export default function App() {
         showMovieList, setShowMovieList,
         favoriteData, setFavoriteData,
         mobile,
-        reload, setReload,
         sortBy, setSortBy,
         searchInput, setSearchInput,
         selectCategory, setSelectCategory,
         userData, setUserData,
         viewWidth, setViewWidth,
         }}>
-          <AuthenCheck>
             <Layout />
-          </AuthenCheck>
         </ContextStatus.Provider>
     );
 }

@@ -6,6 +6,6 @@ export function AuthenCheck(prop) {
     const { loginStatus} = useContext(ContextStatus);
     return(
         <CheckSession>
-            {loginStatus===true? prop.children : ( loginStatus===false ? (<LoginForm />) : "")}
+            {loginStatus===true? prop.children : ( loginStatus===false ? (<LoginForm />) : null)}
         </CheckSession>);
 }
