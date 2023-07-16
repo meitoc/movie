@@ -1,5 +1,6 @@
 import * as React from 'react';
-import CheckSession from './features/authentication/CheckSession';
+// import CheckSession from './features/authentication/CheckSession';
+import { AuthenCheck } from './features/authentication/AuthenCheck';
 import Layout from './layout/Layout';
 export const ContextStatus = React.createContext();
 
@@ -49,9 +50,9 @@ export default function App() {
         userData, setUserData,
         viewWidth, setViewWidth,
         }}>
-          <CheckSession>
+          <AuthenCheck>
             <Layout />
-          </CheckSession>
+          </AuthenCheck>
         </ContextStatus.Provider>
     );
 }
