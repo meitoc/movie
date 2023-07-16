@@ -7,7 +7,7 @@ export default function CheckSession (prop) {
     // const history=createBrowserHistory();
     const { setLoginStatus, setServiceInfo} = useContext(ContextStatus);
     useEffect(()=>{
-        async function checkLoginSession() {
+        function checkLoginSession() {
             const session = localStorage.getItem('loginSession');
             axios({
                 method: 'get',
