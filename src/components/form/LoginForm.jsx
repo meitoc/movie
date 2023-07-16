@@ -15,8 +15,7 @@ import Modal from '@mui/material/Modal';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-import { ContextStatus } from "../App";
-
+import { ContextStatus } from '../../App';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -39,7 +38,7 @@ export default function LoginForm(prop) {
   const [showPassword, setShowPassword] = React.useState(false);
   const [loginError, setLoginError] = React.useState("Enter your username and password!");
   const [disableLoginInput, setDisableLoginInput] =React.useState(false);
-  const { setLoginStatus} = React.useContext(ContextStatus);
+  const { setLoginStatus, setServiceInfo} = React.useContext(ContextStatus);
   const history = createBrowserHistory();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -57,25 +56,29 @@ export default function LoginForm(prop) {
             url: `/api/login?username=${userName}&password=${password}`,
           }).then(response => {
             const data =  response.data;
-            console.log(data);
             if(data.status==="loggedin"){
                 localStorage.setItem('loginSession',data.data.token);
                 setShowLoginForm(false);
+                //
+                const themoviedb= data.data.services.find(item => item.service === "themoviedb");//load login info for layer 2
+                console.log("Fakeapi.meitoc.net: You'r logged in.");
+                setServiceInfo(themoviedb);
+                //
                 if(typeof prop.fn === 'function') prop.fn(false);
                 setLoginStatus(true);
             } else if(data.error==="login_locked"){
-                // setLoginStatus(false);//new
                 setLoginError( "The account is locked!");
-            } else{
-                // setLoginStatus(false);//new
+                console.log( "Fakeapi.meitoc.net: The account is locked!");
+              } else{
                 setLoginError( "Wrong password or user name!");
+                console.log( "Wrong password or user name!");
             }
             setDisableLoginInput(false);
           })
           .catch(error => {
             console.log(error)
-            // setLoginStatus(false);//new
             setLoginError("Check your internet connection!");
+            console.log("Check your internet connection!");
             setDisableLoginInput(false);
         });
     }

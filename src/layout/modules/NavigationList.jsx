@@ -8,26 +8,22 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
 import WhatshotIcon from '@mui/icons-material/Whatshot';
-import SettingsIcon from '@mui/icons-material/Settings';
-import FolderSharedIcon from '@mui/icons-material/FolderShared';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import LogoutIcon from '@mui/icons-material/Logout';
-import LoginIcon from '@mui/icons-material/Login';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-import { ContextStatus } from '../App';
+import { ContextStatus } from '../../App';
 
 
 
 export default function NavigationList() {
-    const {mobile,handleDrawerClose,loginStatus} = useContext(ContextStatus);
+    const {handleDrawerClose,loginStatus} = useContext(ContextStatus);
     const navList = [
         {text:'Home page', link: "", icon: (<WhatshotIcon />)},
-        // {text:'Hot deal', link: "/hotdeals", icon: (<GradeIcon />)},
-        {text:'Cart', link: "/cart", icon: (<ShoppingCartIcon />), viewByLogin: true},
-        {text:'Your Account', link: "/account", icon: (<FolderSharedIcon />), viewByLogin: true},
-        {text:'Setting', link: "/setting", icon: (<SettingsIcon />)},
-        {text:'Login', link: "/login", icon: (<LoginIcon />), viewByLogin: false},
-        {text:'Logout', link: "/logout", icon: (<LogoutIcon />), viewByLogin: true},
+        {text:'Favorite', link: "/favorite", icon: (<FavoriteIcon />), viewByLogin: true},
+        {text:'Now Playing', link: "/movielists/nowplaying", icon: (<ArrowForwardIosIcon />), viewByLogin: true},
+        {text:'Popular', link: "/movielists/popular", icon: (<ArrowForwardIosIcon />), viewByLogin: true},
+        {text:'TopRated', link: "/movielists/top_rated", icon: (<ArrowForwardIosIcon />), viewByLogin: true},
+        {text:'Upcoming', link: "/movielists/upcoming", icon: (<ArrowForwardIosIcon />), viewByLogin: true},
     ];
     const ListItemInside = (prop)=>{
         return(
@@ -59,9 +55,10 @@ export default function NavigationList() {
                         <ListItem key={element.text} disablePadding sx={{ display: 'block' }} 
                         >
                             <Link to={element.link}
-                            style={{ textDecoration: 'none' }}
+                            style={{ textDecoration: 'none' , color: 'inherit'}}
                             onClick={()=>{
-                                if(mobile) handleDrawerClose();
+                                // if(mobile) handleDrawerClose();//use only for mobile. when you enable this, please clear the line before, and add mobile to useContext
+                                handleDrawerClose();
                             }}
                             >
                                 <ListItemInside text={element.text} icon={element.icon} />

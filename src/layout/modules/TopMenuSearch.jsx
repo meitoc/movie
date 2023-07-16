@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 
-import { ContextStatus } from '../App';
+import { ContextStatus } from '../../App';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
