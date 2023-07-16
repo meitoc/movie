@@ -2,7 +2,7 @@ import { useEffect,useContext} from "react";
 import { ContextStatus } from "../../App";
 import axios from "axios";
 
-export default function CheckSession (prop) {
+export default function CheckUserSession (prop) {
     const { setLoginStatus, setServiceInfo} = useContext(ContextStatus);
     useEffect(()=>{
         function checkLoginSession() {
