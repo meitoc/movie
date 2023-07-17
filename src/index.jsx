@@ -22,6 +22,8 @@ import UpComing from "./pages/movielists/UpComing";
 import Popular from "./pages/movielists/Popular";
 import TopRated from "./pages/movielists/TopRated";
 
+import Genres from "./pages/Genres";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -63,6 +65,16 @@ const router = createBrowserRouter([
             errorElement: <ErrorPage />,
           },
         ]
+      },
+      {
+        path: "genres",
+        element: <Genres />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "genres/:genresId",
+        element: <Genres />,
+        errorElement: <ErrorPage />,
       },
       {
         path: "search",

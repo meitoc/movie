@@ -11,6 +11,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import PhotoCameraFrontIcon from '@mui/icons-material/PhotoCameraFront';
 import SearchIcon from '@mui/icons-material/Search';
 
 import Divider from '@mui/material/Divider';
@@ -32,6 +33,7 @@ export default function NavigationList() {
         {text:'TopRated', link: "/movielists/top_rated", icon: (<ArrowForwardIosIcon />), viewByLogin: true},
         {text:'Upcoming', link: "/movielists/upcoming", icon: (<ArrowForwardIosIcon />), viewByLogin: true},
         {icon:(<Divider />)},
+        {text:'Genres', link: "/genres", icon: (<PhotoCameraFrontIcon />), viewByLogin: true},
         {text:'Search', link: "/search", icon: (<SearchIcon />), viewByLogin: true},
     ];
     const ListItemInside = (prop)=>{
@@ -59,21 +61,23 @@ export default function NavigationList() {
     return (
         <>
             <List>
-                {navList.map((element) => (
-                    element.text===undefined?
-                    (element.icon)
-                    :(element.viewByLogin===undefined) || !(element.viewByLogin===true ^ loginStatus) ?(
-                        <ListItem key={element.text} disablePadding sx={{ display: 'block' }} 
+                {navList.map((element,index) => (
+                    (element.viewByLogin===undefined) || !(element.viewByLogin===true ^ loginStatus) ?(
+                        <ListItem key={index} disablePadding sx={{ display: 'block' }} 
                         >
-                            <Link to={element.link}
-                            style={{ textDecoration: 'none' , color: 'inherit'}}
-                            onClick={()=>{
-                                if(mobile) handleDrawerClose();//use only for mobile. when you enable this, please clear the line before, and add mobile to useContext
-                                // handleDrawerClose();
-                            }}
-                            >
-                                <ListItemInside text={element.text} icon={element.icon} />
-                            </Link>
+                            {element.text===undefined?
+                            (<>{element.icon}</>)
+                            :
+                                <Link to={element.link}
+                                style={{ textDecoration: 'none' , color: 'inherit'}}
+                                onClick={()=>{
+                                    if(mobile) handleDrawerClose();//use only for mobile. when you enable this, please clear the line before, and add mobile to useContext
+                                    // handleDrawerClose();
+                                }}
+                                >
+                                    <ListItemInside text={element.text} icon={element.icon} />
+                                </Link>
+                            }
                             {element.child!==undefined? element.child : ""}
                         </ListItem>
                     )

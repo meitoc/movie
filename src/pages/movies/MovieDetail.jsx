@@ -1,6 +1,7 @@
 import { useState,useContext, useEffect } from 'react';
 
-// import Container from '@mui/material/Container';
+import { Link } from 'react-router-dom';
+
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -13,7 +14,7 @@ import IconButton from '@mui/material/IconButton';
 import ShareIcon from '@mui/icons-material/Share';
 import Avatar from '@mui/material/Avatar';
 import Credits from '../../components/movies/Credits';
-import Collection from '../../components/movies/Collection';
+import MovieList from '../../components/movies/MovieList';
 import { ContextStatus } from '../../App';
 import AddToFavorite from '../../components/small-component/AddToFavorite';
 
@@ -82,7 +83,11 @@ if(movieInfo!==null)
                   </Typography>
                 </Box>
                 <Box>
-                  {movieInfo.genres!==undefined? movieInfo.genres.map(e=>(<Chip label={e.name} variant="outlined" key={e.id} />)):""}
+                  {movieInfo.genres!==undefined? movieInfo.genres.map(e=>(
+                    <Link key={e.id} to={`/genres/${e.id}`} >
+                      <Chip label={e.name} variant="outlined" />
+                    </Link>
+                  )):""}
                 </Box>
                 <Box>
                   <Typography variant="h6" gutterBottom>
@@ -139,7 +144,7 @@ if(movieInfo!==null)
                 <Typography variant="h6" gutterBottom >
                   Collection:
                 </Typography>
-                  <Collection collection={movieInfo.belongs_to_collection.id} />
+                  <MovieList type="collection" movieList={movieInfo.belongs_to_collection.id}  />
               </Card>
             </Grid>
             :null
