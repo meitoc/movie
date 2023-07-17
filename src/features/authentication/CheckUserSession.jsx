@@ -18,13 +18,13 @@ export default function CheckUserSession (prop) {
                     setLoginStatus(true);
                     //
                     const themoviedb = data.data.services.find(item => item.service === "themoviedb");//load login info for layer 2
-                    console.log("Website created a newtoken");
+                    console.log("Fakeapi.meitoc.net created a newtoken");
                     setServiceInfo(themoviedb);
                     // setLoginStatus(true);
                 } else if(data.status==="loggedin"){
                     setLoginStatus(true);
                     const themoviedb = data.data.services.find(item => item.service === "themoviedb");//load login info for layer 2
-                    console.log("Website created a loggedin token");
+                    console.log("Fakeapi.meitoc.net created a loggedin token");
                     setServiceInfo(themoviedb);
                 } else {
                     setLoginStatus(false);
@@ -32,19 +32,19 @@ export default function CheckUserSession (prop) {
                 }
             })
             .catch(error => {
-                console.log("Error when check your session!")
+                console.log("Fakeapi.meitoc.net: Error when check your session!")
                 console.log(error)
                 // setLogin(false);
                 // setLoginStatus(false);
             }); 
         }
         let session = localStorage.getItem('loginSession');
-        if (session !==null & session!==undefined) checkLoginSession();
+        if (session !==null && session!==undefined) checkLoginSession();
         else setLoginStatus(false);
     },[setLoginStatus,setServiceInfo]);
-    if(prop.children!=null) return(
+    return(
         <>
         {prop.children}
         </>
-    ); else return null;
+    );
 }

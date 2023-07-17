@@ -21,7 +21,7 @@ export default function AccountAvatar() {
     };
     return (
       <FetchUserData>
-        {userData.name!==undefined?
+        {userData!==undefined && userData!==null?
         <>
           <Button  onClick={handleClick} >
             <Avatar 
@@ -64,7 +64,7 @@ export default function AccountAvatar() {
           </Menu>
         </>
         :
-          ""}
+          null}
       
       </FetchUserData>
     );

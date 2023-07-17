@@ -2,7 +2,7 @@ import { useEffect,useContext} from "react";
 import { ContextStatus } from "../../App";
 
 export default function FetchFavorite(prop) {
-    const { loginStatus, setFavoriteData,serviceInfo} = useContext(ContextStatus);
+    const { loginStatus, favoriteData, setFavoriteData,serviceInfo} = useContext(ContextStatus);
     useEffect(()=>{
         let page=0;
         let results=[];
@@ -10,12 +10,12 @@ export default function FetchFavorite(prop) {
             const options = {
                 method: 'GET',
                 headers: {
-                  accept: 'application/json',
-                  Authorization: `Bearer ${serviceInfo.token}`,
+                accept: 'application/json',
+                Authorization: `Bearer ${serviceInfo.token}`,
                 }
-              };
-              page++;
-              fetch(`https://api.themoviedb.org/3/account/${serviceInfo.account}/favorite/movies?page=${page}`, options)
+            };
+            page++;
+            fetch(`https://api.themoviedb.org/3/account/${serviceInfo.account}/favorite/movies?page=${page}`, options)
                 .then(response => response.json())
                 .then(response => {
                     if(page < response.total_pages) {
@@ -32,9 +32,12 @@ export default function FetchFavorite(prop) {
                     console.error(err);
                 });
         }
-        if(serviceInfo.account!==null) fetchData();
-        console.log(`Fetching favorite list...`);
-    },[setFavoriteData,serviceInfo]);
+        if(serviceInfo.account!==null && serviceInfo.account!==undefined && favoriteData===null) {
+            fetchData();
+            console.log(`Fetching favorite list...`);
+            setFavoriteData([]); //prevent reloading this component
+        }
+    },[favoriteData,setFavoriteData,serviceInfo]);
     if(loginStatus===true){
         return(<>
             {prop.children}

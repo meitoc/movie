@@ -22,6 +22,7 @@ import AccountAvatar from './modules/AccountAvatar';
 // import { checkSession } from '../features/authentication/checkSession';
 import { ContextStatus } from '../App';
 import { Outlet } from 'react-router-dom';
+// import CheckUserSession from '../features/authentication/CheckUserSession';
 
 let drawerWidth = 240;
 
@@ -104,6 +105,7 @@ export default function Layout() {
     
     return (
         <ThemeProvider theme={darkTheme}>
+          {/* <CheckUserSession> */}
             <Box display= 'flex' justifyContent='center'>
                 <CssBaseline />
                 <AppBar position="fixed" open={open}>
@@ -151,7 +153,8 @@ export default function Layout() {
                     <Outlet />
                 </Main>
             </Box>
-        </ThemeProvider>
+          {/* </CheckUserSession> */}
+      </ThemeProvider>
     );
 }
   

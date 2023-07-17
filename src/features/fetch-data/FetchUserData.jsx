@@ -2,7 +2,7 @@ import { useEffect,useContext} from "react";
 import { ContextStatus } from "../../App";
 
 export default function FetchUserData(prop) {
-    const { loginStatus, setUserData,serviceInfo} = useContext(ContextStatus);
+    const { loginStatus, userData, setUserData,serviceInfo} = useContext(ContextStatus);
     // const [changeData,setChangData] =useState(null);
     useEffect(()=>{
         async function fetchData() {
@@ -26,9 +26,12 @@ export default function FetchUserData(prop) {
                 });
         }
         
-        if(loginStatus===true) fetchData();
-    },[setUserData,serviceInfo,loginStatus]);
-    if(loginStatus===true){
+        if(loginStatus===true && userData === null) {
+            fetchData();
+            console.log("Fetching user data from TMDB")
+        }
+    },[userData,setUserData,serviceInfo,loginStatus]);
+    if(userData !== ""){
         return(<>
             {prop.children}
         </>)

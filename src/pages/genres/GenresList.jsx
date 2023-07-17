@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import MovieList from '../../components/movies/MovieList';
+
+import Box from '@mui/material/Box';
 import { ContextStatus } from '../../App';
 //========
 export default function GenresList() {
@@ -32,8 +34,8 @@ useEffect(()=>{
     <>
     {
       genres.length > 0 ? genres.map((item, index)=>(
-        <>
-          <Link key={index} to={`/genres/${item.id}`}>
+        <Box key={index}>
+          <Link  to={`/genres/${item.id}`}>
             <Button variant="text">
               <Typography variant="h4" gutterBottom>
                 {item.name}
@@ -41,7 +43,7 @@ useEffect(()=>{
             </Button>
           </Link>
           <MovieList type="genres" movieList={item.id} pick={4} />
-        </>
+        </Box>
       ))
       : null
     }

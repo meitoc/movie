@@ -13,17 +13,17 @@ export default function App() {
     const [loginStatus, setLoginStatus] = React.useState(null); //check loggedIn for normal, check logSession for secure
     
     //Infomation layer 1
-    const [serviceInfo,setServiceInfo] = React.useState([]);
+    const [serviceInfo,setServiceInfo] = React.useState(null);
     
     //Cutomer's cart
-    const [favoriteData, setFavoriteData] = React.useState ([]);
+    const [favoriteData, setFavoriteData] = React.useState (null);
   
     // const [loginFormOpen, setLoginFormOpen] = React.useState(true);
     const [movieList, updateMovieList] = React.useState([]);//use for fetch data
     const [showMovieList, setShowMovieList] = React.useState(null);//use for show data
     
     //User info
-    const [userData, setUserData] = React.useState("");//use for show data
+    const [userData, setUserData] = React.useState(null);//use for show data
     
     //============
     const handleResize = ()=>{
