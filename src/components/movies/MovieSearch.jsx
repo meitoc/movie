@@ -10,20 +10,22 @@ import ExplicitIcon from '@mui/icons-material/Explicit';
 import Pagination from '@mui/material/Pagination';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import randomNumber from '../../features/randomNumber';
 import Image from '../Imgage';
 
 import { ContextStatus } from '../../App';
 //========
-export default function MovieList(prop) {//prop: movieList, page
-  const [movieList,setMovieList] = useState("");
+export default function MovieSearch(prop) {//prop: movieList, page
+  // const [movieList,setMovieList] = useState("");
+  const [fetchedMovieList,setFetchedMovieList] = useState("");
   const { serviceInfo, mobile } = useContext(ContextStatus);
-  const [pickFromlist, setPickFromlist] = useState([]);
-  const [page, setPage] = useState(1);
+  const [ page, setPage] = useState(1);
+  const [ searching, setSearching] = useState(false);
   const handleChange = (event, value) => {
     setPage(value);
   };
   useEffect(()=>{
+    let fetchPage = 0;
+    let fetchedData = [];
     function fetchData () {
       const options = {
         method: 'GET',
@@ -32,46 +34,37 @@ export default function MovieList(prop) {//prop: movieList, page
           Authorization: `Bearer ${serviceInfo.token}`,
         }
       };
-      //prop.movielist: "now_playing", "popular", "now_playing", "upcoming"
-      let url;
-  
-      if(prop.type==="list") url = `https://api.themoviedb.org/3/movie/${prop.movieList}?language=en-US&page=${page}`;
-      else if(prop.type==="genres") url = `https://api.themoviedb.org/3/list/${prop.movieList}?`;
-      else if(prop.type==="collection") url = `https://api.themoviedb.org/3/collection/${prop.movieList}?language=en-US`;
-      else if(prop.type==="search") url = `https://api.themoviedb.org/3/search/movie?query=${prop.query}&page=${page}&include_adult=true`;
-      else if (prop.type==="favorite") url = `https://api.themoviedb.org/3/account/${serviceInfo.account}/favorite/movies?page=${page}`;
+      fetchPage++;
+      let url = `https://api.themoviedb.org/3/search/movie?query=${prop.query}&page=${fetchPage}&include_adult=true`;
       fetch(url, options)
         .then(response => response.json())
         .then(response => {
-          if (response.success===false) {
-            setMovieList("empty");//some error from server
+          if (response.success!==false) {
+            fetchedData=fetchedData.concat(response.results);
+          }
+          if (fetchPage<response.total_pages){
+            fetchData();
           }
           else {
-            if (prop.type==="genres") response = {
-              ...response,
-              results: response.items,
-              items: undefined,
-            };
-            else if (prop.type==="collection") {
-              response = {
-                ...response,
-                results: response.parts,
-                parts: undefined,
-              };
-              console.log("collection");
-              console.log(response);
-            }
-            if(pickFromlist.length<1) setPickFromlist(randomNumber(prop.pick===undefined?(response.results.length):prop.pick,0,response.results.length-1));
-            setMovieList(response);
+            setFetchedMovieList(fetchedData);
+            setSearching(false);
           }
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+          setFetchedMovieList(fetchedData);
+          setSearching(false);
+          console.error(err);
+        });
     }
+    setSearching(true);
     fetchData();
-},[pickFromlist,serviceInfo,prop.pick,prop.page, prop.movieList, prop.query,prop.type,page]);
-  if(movieList==="") return(<CircularProgress />);
-  else if(movieList==="empty") return null;
+},[setSearching,serviceInfo,prop.query]);
+  if(fetchedMovieList==="" || searching) return(<CircularProgress />);
+  else if(fetchedMovieList.length===0) return null;
   else {
+    const filteredMovieList = fetchedMovieList.filter(movie => prop.genre==0 || movie.genre_ids.some(genre => genre == prop.genre));
+    // console.log(filteredMovieList);
+    const totalPage = Math.ceil(filteredMovieList.length/20);
     return(
       <>
         <Container fixed
@@ -80,8 +73,7 @@ export default function MovieList(prop) {//prop: movieList, page
             <>
               <ImageList sx={prop.fullScreen===true?{ width: "100%", display: "flex", justifyContent:"center",flexWrap:"wrap" }:{ width: "100%", maxHeight: 480 , display: "flex", flexDirection: mobile?"column":"row"}}>
               {
-                movieList.results.map((item,index) => 
-                  pickFromlist.includes(index) && (prop.genres===undefined || prop.genres===0 || item.genre_ids.some(genre => genre == prop.genres))?
+                filteredMovieList.map((item,index) => index>page*20 || index<(page-1)*20? null:
                   (
                     <ImageListItem key={item.id}  >
                       <Link to={`/movies/${item.id}`}>
@@ -107,16 +99,9 @@ export default function MovieList(prop) {//prop: movieList, page
                       />
                     </ImageListItem>
                   )
-                  :
-                  null
               )}
               </ImageList>
-              {
-                prop.fullScreen===true & movieList.total_pages>2?
-                <Pagination count={movieList.total_pages} boundaryCount={mobile?0:2} page={page}  onChange={handleChange} />
-                :
-                null
-              }
+                {totalPage<2?null:<Pagination count={totalPage} boundaryCount={mobile?0:2} page={page}  onChange={handleChange} />}
             </>
           }
         </Container>

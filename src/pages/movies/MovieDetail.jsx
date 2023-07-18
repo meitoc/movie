@@ -17,6 +17,8 @@ import Credits from '../../components/movies/Credits';
 import MovieList from '../../components/movies/MovieList';
 import { ContextStatus } from '../../App';
 import AddToFavorite from '../../components/small-component/AddToFavorite';
+import Image from '../../components/Imgage';
+import ExplicitIcon from '@mui/icons-material/Explicit';
 
 export default function MovieDetail(prop) {
   const {darkMode,serviceInfo,mobile}=useContext(ContextStatus);
@@ -52,10 +54,9 @@ if(movieInfo!==null)
               <CardContent>
                 {
                   movieInfo.poster_path!==null && movieInfo.poster_path!==undefined?
-                    <img
+                    <Image
                       style={{maxHeight: 400, minWidth: 250}}
                       src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movieInfo.poster_path}`}
-                      srcSet={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movieInfo.poster_path}`}
                       alt={movieInfo.id}
                     />
                   :
@@ -69,11 +70,16 @@ if(movieInfo!==null)
                   <Chip label= {movieInfo.production_countries!==undefined? movieInfo.production_countries.map(e=> `${e.iso_3166_1} `):""} />
                 </Box>
                 <Box>
+                  {movieInfo.adult?<IconButton
+                    aria-label={`adult ${movieInfo.title}`}
+                  >
+                    <ExplicitIcon />
+                  </IconButton>
+                  :null}
                   <AddToFavorite id={movieInfo.id} />
                   <IconButton
-                    sx={{ color: 'rgba(255,60,60, 0.8)' }}
-                    aria-label={`info about ${movieInfo.title}`}
-                    >
+                    aria-label={`share ${movieInfo.title}`}
+                  >
                     <ShareIcon />
                   </IconButton>
                 </Box>

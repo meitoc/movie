@@ -9,7 +9,7 @@ import Container from '@mui/material/Container';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-
+import Image from '../Imgage';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import { ContextStatus } from '../../App';
@@ -46,15 +46,9 @@ if(creditsInfo.cast!==undefined)
       <ImageList sx={{ width: "100%", maxHeight: 170 , display: "flex", flexDirection: mobile?"column":"row"}}>
         {creditsInfo.cast.map((actor,index) => (
             <ImageListItem key={index}  >
-              <img
+              <Image
                 style={{maxHeight: 150, minWidth: 150}}
                 src={
-                  actor.profile_path!==null && actor.profile_path!==undefined?
-                  `https://www.themoviedb.org/t/p/w138_and_h175_face${actor.profile_path}`
-                  :
-                  ""
-                }
-                srcSet={
                   actor.profile_path!==null && actor.profile_path!==undefined?
                   `https://www.themoviedb.org/t/p/w138_and_h175_face${actor.profile_path}`
                   :

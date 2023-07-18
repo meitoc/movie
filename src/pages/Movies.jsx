@@ -16,8 +16,6 @@ export default function Movies() {
       <AuthenCheck loginForm={false} >
         <FetchFavorite>
           <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-            <div  style={{display: "flex", flexDirection: "row", flexWrap: "nowrap", width: "100%"}}>
-            </div>
               <MovieRecommend />
           </Box>
         </FetchFavorite>
