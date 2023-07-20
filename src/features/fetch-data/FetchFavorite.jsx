@@ -30,13 +30,14 @@ export default function FetchFavorite(prop) {
                 .catch(err => {
                     console.log("Error when fetch favorite list!")
                     console.error(err);
+                    setFavoriteData([]);
                 });
         }
         if(serviceInfo.account!==null && serviceInfo.account!==undefined && favoriteData===null) {
             fetchData();
             console.log(`Fetching favorite list...`);
             setFavoriteData([]); //prevent reloading this component
-        }
+        } else setFavoriteData([]);
     },[favoriteData,setFavoriteData,serviceInfo]);
     if(loginStatus===true){
         return(<>

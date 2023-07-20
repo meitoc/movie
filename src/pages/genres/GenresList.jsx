@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Typography from '@mui/material/Typography';
@@ -6,20 +6,17 @@ import Button from '@mui/material/Button';
 import MovieList from '../../components/movies/MovieList';
 
 import Box from '@mui/material/Box';
-import { ContextStatus } from '../../App';
 //========
 export default function GenresList() {
 const [genres, setGenres]  = useState([]);
-const {serviceInfo}=useContext(ContextStatus)
 useEffect(()=>{
   const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: `Bearer ${serviceInfo.token}`,
     }
   };
-  fetch(`https://api.themoviedb.org/3/genre/movie/list`, options)
+  fetch(`https://fakeapi.meitoc.net/redirect/9La81A3m223aawsQ/3/genre/movie/list`, options)
     .then(response => response.json())
     .then(response => {
       setGenres(response.genres);
@@ -29,7 +26,7 @@ useEffect(()=>{
       console.log("Error when fetch a genres")
       console.error(err);
     });
-},[setGenres,serviceInfo])
+},[setGenres])
   return(
     <>
     {

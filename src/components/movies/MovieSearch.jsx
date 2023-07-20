@@ -14,10 +14,11 @@ import Image from '../Imgage';
 
 import { ContextStatus } from '../../App';
 //========
+const ITEMS_PER_PAGE = 30;
 export default function MovieSearch(prop) {//prop: movieList, page
   // const [movieList,setMovieList] = useState("");
   const [fetchedMovieList,setFetchedMovieList] = useState("");
-  const { serviceInfo, mobile } = useContext(ContextStatus);
+  const { mobile } = useContext(ContextStatus);
   const [ page, setPage] = useState(1);
   const [ searching, setSearching] = useState(false);
   const handleChange = (event, value) => {
@@ -31,11 +32,11 @@ export default function MovieSearch(prop) {//prop: movieList, page
         method: 'GET',
         headers: {
           accept: 'application/json',
-          Authorization: `Bearer ${serviceInfo.token}`,
         }
       };
       fetchPage++;
-      let url = `https://api.themoviedb.org/3/search/movie?query=${prop.query}&page=${fetchPage}&include_adult=true`;
+      let url = `https://fakeapi.meitoc.net/redirect/9La81A3m223aawsQ/3/search/movie?query=${prop.query}&page=${fetchPage}&include_adult=${prop.adult}`;
+      // console.log(url)
       fetch(url, options)
         .then(response => response.json())
         .then(response => {
@@ -58,13 +59,13 @@ export default function MovieSearch(prop) {//prop: movieList, page
     }
     setSearching(true);
     fetchData();
-},[setSearching,serviceInfo,prop.query]);
+},[setSearching,prop.query,prop.adult]);
   if(fetchedMovieList==="" || searching) return(<CircularProgress />);
   else if(fetchedMovieList.length===0) return null;
   else {
-    const filteredMovieList = fetchedMovieList.filter(movie => prop.genre==0 || movie.genre_ids.some(genre => genre == prop.genre));
+    const filteredMovieList = fetchedMovieList.filter(movie => (prop.genre==0 || movie.genre_ids.some(genre => genre == prop.genre)));
     // console.log(filteredMovieList);
-    const totalPage = Math.ceil(filteredMovieList.length/20);
+    const totalPage = Math.ceil(filteredMovieList.length/ITEMS_PER_PAGE);
     return(
       <>
         <Container fixed
@@ -73,7 +74,7 @@ export default function MovieSearch(prop) {//prop: movieList, page
             <>
               <ImageList sx={prop.fullScreen===true?{ width: "100%", display: "flex", justifyContent:"center",flexWrap:"wrap" }:{ width: "100%", maxHeight: 480 , display: "flex", flexDirection: mobile?"column":"row"}}>
               {
-                filteredMovieList.map((item,index) => index>page*20 || index<(page-1)*20? null:
+                filteredMovieList.map((item,index) => index>=page*ITEMS_PER_PAGE || index<(page-1)*ITEMS_PER_PAGE? null:
                   (
                     <ImageListItem key={item.id}  >
                       <Link to={`/movies/${item.id}`}>

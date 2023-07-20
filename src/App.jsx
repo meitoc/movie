@@ -16,7 +16,7 @@ export default function App() {
     const [serviceInfo,setServiceInfo] = React.useState(null);
     
     //Cutomer's cart
-    const [favoriteData, setFavoriteData] = React.useState (null);
+    const [favoriteData, setFavoriteData] = React.useState ([]);
   
     // const [loginFormOpen, setLoginFormOpen] = React.useState(true);
     const [movieList, updateMovieList] = React.useState([]);//use for fetch data

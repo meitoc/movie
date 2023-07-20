@@ -29,17 +29,20 @@ export default function MovieList(prop) {//prop: movieList, page
         method: 'GET',
         headers: {
           accept: 'application/json',
-          Authorization: `Bearer ${serviceInfo.token}`,
+          // Authorization: `Bearer ${serviceInfo.token}`,
         }
       };
       //prop.movielist: "now_playing", "popular", "now_playing", "upcoming"
       let url;
   
-      if(prop.type==="list") url = `https://api.themoviedb.org/3/movie/${prop.movieList}?language=en-US&page=${page}`;
-      else if(prop.type==="genres") url = `https://api.themoviedb.org/3/list/${prop.movieList}?`;
-      else if(prop.type==="collection") url = `https://api.themoviedb.org/3/collection/${prop.movieList}?language=en-US`;
-      else if(prop.type==="search") url = `https://api.themoviedb.org/3/search/movie?query=${prop.query}&page=${page}&include_adult=true`;
-      else if (prop.type==="favorite") url = `https://api.themoviedb.org/3/account/${serviceInfo.account}/favorite/movies?page=${page}`;
+      // if(prop.type==="list") url = `https://api.themoviedb.org/3/movie/${prop.movieList}?language=en-US&page=${page}`;
+      // else if(prop.type==="genres") url = `https://api.themoviedb.org/3/list/${prop.movieList}?`;
+      // else if(prop.type==="collection") url = `https://api.themoviedb.org/3/collection/${prop.movieList}?language=en-US`;
+      // else if (prop.type==="favorite") url = `https://api.themoviedb.org/3/account/${serviceInfo.account}/favorite/movies?page=${page}`;
+      if(prop.type==="list") url = `https://fakeapi.meitoc.net/redirect/9La81A3m223aawsQ/3/movie/${prop.movieList}?language=en-US&page=${page}`;
+      else if(prop.type==="genres") url = `https://fakeapi.meitoc.net/redirect/9La81A3m223aawsQ/3/list/${prop.movieList}?`;
+      else if(prop.type==="collection") url = `https://fakeapi.meitoc.net/redirect/9La81A3m223aawsQ/3/collection/${prop.movieList}?language=en-US`;
+      else if (prop.type==="favorite") url = `https://fakeapi.meitoc.net/redirect/9La81A3m223aawsQ/3/account/${serviceInfo.account}/favorite/movies?page=${page}`;
       fetch(url, options)
         .then(response => response.json())
         .then(response => {

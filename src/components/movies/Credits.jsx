@@ -23,10 +23,11 @@ export default function Credits(prop) {
       method: 'GET',
       headers: {
         accept: 'application/json',
-        Authorization: `Bearer ${serviceInfo.token}`,
+        // Authorization: `Bearer ${serviceInfo.token}`,
       }
     };
-    fetch(`https://api.themoviedb.org/3/movie/${prop.movie}/credits?language=en-US`, options)
+    
+    fetch(`https://fakeapi.meitoc.net/redirect/9La81A3m223aawsQ/3/movie/${prop.movie}/credits?language=en-US`, options)
       .then(response => response.json())
       .then(response => {
         setCreditsInfo(response);

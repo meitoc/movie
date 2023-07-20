@@ -10,7 +10,7 @@ import { ContextStatus } from '../../App';
 import { ContextSearch } from '../../pages/Search';
 
 export default function GenresSelect() {
-    const {mobile,serviceInfo} = useContext(ContextStatus);
+    const {mobile} = useContext(ContextStatus);
     const {setSelectGenres} = useContext(ContextSearch);
     const direction = mobile?"column": "row";
     const [genres, setGenres]  = useState([]);
@@ -19,10 +19,9 @@ useEffect(()=>{
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: `Bearer ${serviceInfo.token}`,
     }
   };
-  fetch(`https://api.themoviedb.org/3/genre/movie/list`, options)
+  fetch(`https://fakeapi.meitoc.net/redirect/9La81A3m223aawsQ/3/genre/movie/list`, options)
     .then(response => response.json())
     .then(response => {
       setGenres(response.genres);
@@ -32,7 +31,7 @@ useEffect(()=>{
       console.log("Error when fetch a genres")
       console.error(err);
     });
-},[setGenres,serviceInfo])
+},[setGenres])
   return (
     genres.length < 1 ? null:
       <FormControl>

@@ -18,6 +18,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import NavigationList from './modules/NavigationList';
 import AccountAvatar from './modules/AccountAvatar';
+import { Footer } from '../components/small-component/footer';
 
 // import { checkSession } from '../features/authentication/checkSession';
 import { ContextStatus } from '../App';
@@ -151,10 +152,10 @@ export default function Layout() {
                 <Main open={open} >
                     <DrawerHeader />
                     <Outlet />
+                    <Footer />
                 </Main>
             </Box>
           {/* </CheckUserSession> */}
       </ThemeProvider>
     );
 }
-  
