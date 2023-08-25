@@ -1,13 +1,13 @@
+
 // import MovieList from '../components/movies/MovieList';
 import MovieSearch from '../components/movies/MovieSearch';
 import Typography from '@mui/material/Typography';
-// import FetchFavorite from '../features/fetch-data/FetchFavorite';
+import FetchFavorite from '../features/fetch-data/FetchFavorite';
 import SearchInput from '../components/filter/SearchInput';
 import { createContext, useState } from 'react';
 import GenresSelect from '../components/filter/GenresSelect';
-import Box from '@mui/material/Box';
 import AdultSelect from '../components/filter/AdultSelect';
-
+import Box from '@mui/material/Box';
 export const ContextSearch = createContext();
 
 export default function Search() {
@@ -25,19 +25,19 @@ export default function Search() {
         selectGenres, setSelectGenres,
         selectAdult, setSelectAdult,
       }}>
-        {/* <FetchFavorite> */}
-          <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <FetchFavorite>
+          <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'start'}}>
             <Typography variant="h4" gutterBottom>
               Search
             </Typography>
             <SearchInput />
-            <AdultSelect />
             <GenresSelect />
+            <AdultSelect />
           </Box>
-        {/* </FetchFavorite> */}
+        </FetchFavorite>
         {
           searchInput!==undefined && searchInput!==null?
-          <MovieSearch  adult = {selectAdult} query={searchInput} genre={selectGenres} fullScreen={true} />
+          <MovieSearch adult={selectAdult} query={searchInput} genre={selectGenres} fullScreen={true} />
           : null
         }
         

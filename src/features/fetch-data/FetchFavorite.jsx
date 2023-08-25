@@ -2,49 +2,39 @@ import { useEffect,useContext} from "react";
 import { ContextStatus } from "../../App";
 
 export default function FetchFavorite(prop) {
-    const { loginStatus, favoriteData, setFavoriteData,serviceInfo} = useContext(ContextStatus);
+    const { loginStatus, setFavoriteData} = useContext(ContextStatus);
     useEffect(()=>{
-        let page=0;
-        let results=[];
         async function fetchData() {
             const options = {
                 method: 'GET',
                 headers: {
                 accept: 'application/json',
-                Authorization: `Bearer ${serviceInfo.token}`,
+                Authorization: `Bearer ${session}`,
                 }
             };
-            page++;
-            fetch(`https://api.themoviedb.org/3/account/${serviceInfo.account}/favorite/movies?page=${page}`, options)
+            fetch(`https://movie.meitoc.net/redirect/9La81A3m223aawsQ/3/account/favorite/movies/id`, options)
                 .then(response => response.json())
                 .then(response => {
-                    if(page < response.total_pages) {
-                        results=results.concat(response.results);
-                        fetchData();
-                    }
-                    else {
-                        setFavoriteData(results.concat(response.results));
-                        console.log("Fetched your favorite list.");
-                    }
+                    console.log("Favorite List id:")
+                    console.log(response);
+                    if(Array.isArray(response.data)) setFavoriteData(response.data);
+                    else setFavoriteData([]);
+                    console.log("Fetched your favorite list.");
                 })
                 .catch(err => {
+                    setFavoriteData([]);
                     console.log("Error when fetch favorite list!")
                     console.error(err);
-                    setFavoriteData([]);
                 });
         }
-        if(serviceInfo.account!==null && serviceInfo.account!==undefined && favoriteData===null) {
-            fetchData();
+        let session = localStorage.getItem('loginSession');
+        if(loginStatus===true && session!=null && session!==undefined) {
+            fetchData(session);
+            setFavoriteData(""); //prevent reloading this component
             console.log(`Fetching favorite list...`);
-            setFavoriteData([]); //prevent reloading this component
-        } else setFavoriteData([]);
-    },[favoriteData,setFavoriteData,serviceInfo]);
-    if(loginStatus===true){
-        return(<>
-            {prop.children}
-        </>)
-    }
-    else {
-        return null;
-    }
+        }
+    },[setFavoriteData,loginStatus]);
+    return(<>
+        {prop.children}
+    </>);
 }

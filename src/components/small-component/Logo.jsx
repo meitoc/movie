@@ -8,11 +8,11 @@ export function Logo () {
             <img
             style={{margin: "5px"}}
             // width="40px"
-            height="30px"
+            height={mobile?"40px":"50px"}
                 src={
                     mobile?
-                    "https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_1-5bdc75aaebeb75dc7ae79426ddd9be3b2be1e342510f8202baf6bffa71d7f5c4.svg"
-                    :"https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_2-9665a76b1ae401a510ec1e0ca40ddcb3b0cfe45f1d51b77a308fea0845885648.svg"}>
+                    "/logo.svg"
+                    :"/long-logo.svg"}>
             </img>
         </Link>
     )

@@ -2,6 +2,8 @@ import { useState,useContext, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 
+import { Helmet } from 'react-helmet';
+
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -11,7 +13,6 @@ import Grid from '@mui/material/Grid';
 import Chip from '@mui/material/Chip';
 import CircularProgress from '@mui/material/CircularProgress';
 import IconButton from '@mui/material/IconButton';
-import ShareIcon from '@mui/icons-material/Share';
 import Avatar from '@mui/material/Avatar';
 import Credits from './Credits';
 import MovieList from './MovieList';
@@ -19,7 +20,8 @@ import { ContextStatus } from '../../App';
 import AddToFavorite from '../small-component/AddToFavorite';
 import Image from '../Imgage';
 import ExplicitIcon from '@mui/icons-material/Explicit';
-
+import ShareTo from '../small-component/ShareTo';
+import Comment from './Comment'
 export default function AMovie(prop) {
   
   const {darkMode,mobile}=useContext(ContextStatus);
@@ -32,9 +34,10 @@ export default function AMovie(prop) {
       }
     };
     console.log(`Fetching the movie ${prop.movie}`);
-    fetch( `https://fakeapi.meitoc.net/redirect/9La81A3m223aawsQ/3/movie/${prop.movie}?language=en-US`, options)
+    fetch( `https://movie.meitoc.net/redirect/9La81A3m223aawsQ/3/movie/${prop.movie}?language=en-US`, options)
       .then(response => response.json())
       .then(response => {
+        console.log("This is a movie Response");//test
         console.log(response);
         setMovieInfo(response);
         console.log(`Response: Fetched the movie ${prop.movie}`)
@@ -46,6 +49,17 @@ export default function AMovie(prop) {
 },[prop,setMovieInfo]);
 if(movieInfo!==null)
   return (
+<>
+  <Helmet>
+      <meta property="og:url" content={`https://movie.meitoc.net/movies/${prop.movie}`} />
+      <meta property="og:title" content={`${movieInfo.title}`} />
+      <meta property="og:image" content={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movieInfo.poster_path}`} />
+      <meta name="generator" content={movieInfo.overview} />
+      <meta name="description" content={movieInfo.overview} />
+      <meta property="og:description" content={movieInfo.overview} />
+      <title>{movieInfo.title}</title>
+  </Helmet>
+    <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={{ xs: 1, md: 2 }} columns={{ xs: 1, sm: 2, md: 2 }} >
           <Grid item xs={1} sm={2} md={2} >
             <Typography gutterBottom variant="h4" component="div">
@@ -78,11 +92,8 @@ if(movieInfo!==null)
                   </IconButton>
                   :null}
                   <AddToFavorite id={movieInfo.id} />
-                  <IconButton
-                    aria-label={`share ${movieInfo.title}`}
-                  >
-                    <ShareIcon />
-                  </IconButton>
+                  <ShareTo id={movieInfo.id} />
+                  
                 </Box>
                 <Box>
                   <Typography variant="h6" gutterBottom>
@@ -92,7 +103,7 @@ if(movieInfo!==null)
                 <Box>
                   {movieInfo.genres!==undefined? movieInfo.genres.map(e=>(
                     <Link key={e.id} to={`/genres/${e.id}`} >
-                      <Chip label={e.name} variant="outlined" />
+                      <Chip label={e.name} variant="outlined" style={{cursor: 'pointer'}} />
                     </Link>
                   )):""}
                 </Box>
@@ -156,7 +167,17 @@ if(movieInfo!==null)
             </Grid>
             :null
           }
+          <Grid item xs={2} sm={4} md={4} >
+            <Card sx={{ backgroundColor: darkMode ? 'rgb(10,100,100)' : 'rgb(210,210,255)', padding:1}}>
+              <Typography variant="h6" gutterBottom >
+                Comment
+              </Typography>
+              <Comment movie={prop.movie} />
+            </Card>
+          </Grid>
         </Grid>
+      </Box>
+    </>
   );
   else return (<CircularProgress />);
 }

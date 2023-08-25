@@ -19,9 +19,10 @@ useEffect(()=>{
     method: 'GET',
     headers: {
       accept: 'application/json',
+      // Authorization: `Bearer ${token}`,
     }
   };
-  fetch(`https://fakeapi.meitoc.net/redirect/9La81A3m223aawsQ/3/genre/movie/list`, options)
+  fetch(`https://movie.meitoc.net/redirect/9La81A3m223aawsQ/3/genre/movie/list`, options)
     .then(response => response.json())
     .then(response => {
       setGenres(response.genres);

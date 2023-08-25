@@ -1,16 +1,19 @@
 import { AuthenCheck } from '../features/authentication/AuthenCheck';
-import MovieList from '../components/movies/MovieList';
+import FavoriteList from '../components/movies/FavoriteList';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import FetchFavorite from '../features/fetch-data/FetchFavorite';
 export default function Favorite() {
   return(
     <AuthenCheck>
       <FetchFavorite>
-        <Typography variant="h4" gutterBottom>
-          Favorite
-        </Typography>
+        <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          <Typography variant="h4" gutterBottom>
+            Favorite
+          </Typography>
+          <FavoriteList type="favorite" movieList="popular" fullScreen={true} />
+        </Box>
       </FetchFavorite>
-      <MovieList type="favorite" movieList="popular" fullScreen={true} />
     </AuthenCheck>
   );
 }

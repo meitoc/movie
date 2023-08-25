@@ -21,20 +21,20 @@ import { ContextStatus } from '../../App';
 
 
 export default function NavigationList() {
-    const {mobile, handleDrawerClose,loginStatus} = useContext(ContextStatus);
+    const {mobile, handleDrawerClose,loginStatus, setShowLoginForm} = useContext(ContextStatus);
     const navList = [
         // viewByLogin: true: only be shown when logged in / false: only be shown when logged out / not set: always be shown
         {text:'Home page', link: "", icon: (<WhatshotIcon />)},
-        {text:'Login to view more', link: "/login", icon: (<LoginIcon />), viewByLogin: false},
+        {text:'Login to view more', fn: ()=>setShowLoginForm(true), icon: (<LoginIcon />), viewByLogin: false},
         {text:'Favorite', link: "/favorite", icon: (<FavoriteIcon />), viewByLogin: true},
         {icon:(<Divider />)},
-        {text:'Now Playing', link: "/movielists/nowplaying", icon: (<ArrowForwardIosIcon />), viewByLogin: true},
-        {text:'Popular', link: "/movielists/popular", icon: (<ArrowForwardIosIcon />), viewByLogin: true},
-        {text:'TopRated', link: "/movielists/top_rated", icon: (<ArrowForwardIosIcon />), viewByLogin: true},
-        {text:'Upcoming', link: "/movielists/upcoming", icon: (<ArrowForwardIosIcon />), viewByLogin: true},
+        {text:'Now Playing', link: "/movielists/nowplaying", icon: (<ArrowForwardIosIcon />)},
+        {text:'Popular', link: "/movielists/popular", icon: (<ArrowForwardIosIcon />)},
+        {text:'TopRated', link: "/movielists/top_rated", icon: (<ArrowForwardIosIcon />)},
+        {text:'Upcoming', link: "/movielists/upcoming", icon: (<ArrowForwardIosIcon />)},
         {icon:(<Divider />)},
-        {text:'Genres', link: "/genres", icon: (<PhotoCameraFrontIcon />), viewByLogin: true},
-        {text:'Search', link: "/search", icon: (<SearchIcon />), viewByLogin: true},
+        {text:'Genres', link: "/genres", icon: (<PhotoCameraFrontIcon />)},
+        {text:'Search', link: "/search", icon: (<SearchIcon />)},
     ];
     const ListItemInside = (prop)=>{
         return(
@@ -62,7 +62,7 @@ export default function NavigationList() {
         <>
             <List>
                 {navList.map((element,index) => (
-                    (element.viewByLogin===undefined) || !(element.viewByLogin===true ^ loginStatus) ?(
+                    (element.viewByLogin===undefined) || !(element.viewByLogin===true ^ loginStatus===true) ?(
                         <ListItem key={index} disablePadding sx={{ display: 'block' }} 
                         >
                             {element.text===undefined?
@@ -71,8 +71,8 @@ export default function NavigationList() {
                                 <Link to={element.link}
                                 style={{ textDecoration: 'none' , color: 'inherit'}}
                                 onClick={()=>{
+                                    if(typeof element.fn === "function") element.fn();// handleDrawerClose();
                                     if(mobile) handleDrawerClose();//use only for mobile. when you enable this, please clear the line before, and add mobile to useContext
-                                    // handleDrawerClose();
                                 }}
                                 >
                                     <ListItemInside text={element.text} icon={element.icon} />
@@ -85,7 +85,6 @@ export default function NavigationList() {
                     ""
                 ))}
             </List>
-            
         </>
     )
 }

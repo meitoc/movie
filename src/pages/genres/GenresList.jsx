@@ -16,7 +16,7 @@ useEffect(()=>{
       accept: 'application/json',
     }
   };
-  fetch(`https://fakeapi.meitoc.net/redirect/9La81A3m223aawsQ/3/genre/movie/list`, options)
+  fetch(`https://movie.meitoc.net/redirect/9La81A3m223aawsQ/3/genre/movie/list`, options)
     .then(response => response.json())
     .then(response => {
       setGenres(response.genres);
@@ -39,7 +39,7 @@ useEffect(()=>{
               </Typography>
             </Button>
           </Link>
-          <MovieList type="genres" movieList={item.id} pick={4} />
+          <MovieList type="genres_list" movieList={item.id} pick={4} />
         </Box>
       ))
       : null

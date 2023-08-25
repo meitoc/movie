@@ -12,18 +12,19 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Logo } from '../components/small-component/Logo';
-
+import Footer from '../components/small-component/Footer';
 import Drawer from '@mui/material/Drawer';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import NavigationList from './modules/NavigationList';
 import AccountAvatar from './modules/AccountAvatar';
-import { Footer } from '../components/small-component/footer';
 
 // import { checkSession } from '../features/authentication/checkSession';
 import { ContextStatus } from '../App';
 import { Outlet } from 'react-router-dom';
-// import CheckUserSession from '../features/authentication/CheckUserSession';
+import CheckUserSession from '../features/authentication/CheckUserSession';
+import FetchUserData from '../features/fetch-data/FetchUserData';
+import LoginForm from '../components/form/LoginForm';
 
 let drawerWidth = 240;
 
@@ -77,7 +78,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 export default function Layout() {
-    const { darkMode,mobile, setMobile}= React.useContext(ContextStatus);
+    const { darkMode,mobile, setMobile, showLoginForm}= React.useContext(ContextStatus);
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
     const handleDrawerOpen = () => {
@@ -106,56 +107,60 @@ export default function Layout() {
     
     return (
         <ThemeProvider theme={darkTheme}>
-          {/* <CheckUserSession> */}
-            <Box display= 'flex' justifyContent='center'>
-                <CssBaseline />
-                <AppBar position="fixed" open={open}>
-                    <Toolbar sx={{ display: 'flex', flexWrap: "noWrap" , justifyContent: 'space-between', }}>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        sx={{ mr: 2, ...(open && { visibility: 'hidden' }) }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Logo />
-                    <Box
-                        sx={{display: "flex", flexWrap: "nowrap"}}
-                    >
-                        <AccountAvatar />
-                    </Box>
-                    </Toolbar>
-                </AppBar>
-                <Drawer
-                    sx={{
-                    width: drawerWidth,
-                    flexShrink: 0,
-                    '& .MuiDrawer-paper': {
-                        width: drawerWidth,
-                        boxSizing: 'border-box',
-                    },
-                    }}
-                    variant="persistent"
-                    anchor="left"
-                    open={open}
-                >
-                    <DrawerHeader>
-                        <IconButton onClick={handleDrawerClose}>
-                            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                        </IconButton>
-                    </DrawerHeader>
-                    <Divider />
-                    <NavigationList />
-                </Drawer>
-                <Main open={open} >
-                    <DrawerHeader />
-                    <Outlet />
-                    <Footer />
-                </Main>
-            </Box>
-          {/* </CheckUserSession> */}
+          <CheckUserSession>
+            <FetchUserData>
+              <Box display= 'flex' justifyContent='center'>
+                  <CssBaseline />
+                  <AppBar position="fixed" open={open}>
+                      <Toolbar sx={{ display: 'flex', flexWrap: "noWrap" , justifyContent: 'space-between', }}>
+                      <IconButton
+                          color="inherit"
+                          aria-label="open drawer"
+                          onClick={handleDrawerOpen}
+                          edge="start"
+                          sx={{ mr: 2, ...(open && { visibility: 'hidden' }) }}
+                      >
+                          <MenuIcon />
+                      </IconButton>
+                      <Logo />
+                      <Box
+                          sx={{display: "flex", flexWrap: "nowrap"}}
+                      >
+                          <AccountAvatar />
+                      </Box>
+                      </Toolbar>
+                  </AppBar>
+                  <Drawer
+                      sx={{
+                      width: drawerWidth,
+                      flexShrink: 0,
+                      '& .MuiDrawer-paper': {
+                          width: drawerWidth,
+                          boxSizing: 'border-box',
+                      },
+                      }}
+                      variant="persistent"
+                      anchor="left"
+                      open={open}
+                  >
+                      <DrawerHeader>
+                          <IconButton onClick={handleDrawerClose}>
+                              {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                          </IconButton>
+                      </DrawerHeader>
+                      <Divider />
+                      <NavigationList />
+                  </Drawer>
+                  <Main open={open} style={{display: "flex", flexDirection:"column", alignItems:"center", width: mobile?drawerWidth:'100vw'}} >
+                      <DrawerHeader />
+                        <Outlet />
+                      {showLoginForm?(<LoginForm goBack={false}/>):null}
+                      <Footer />
+                  </Main>
+              </Box>
+            </FetchUserData>
+          </CheckUserSession>
       </ThemeProvider>
     );
 }
+  

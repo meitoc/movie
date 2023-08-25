@@ -17,7 +17,7 @@ import { ContextStatus } from '../../App';
 //========
 export default function MovieList(prop) {//prop: movieList, page
   const [movieList,setMovieList] = useState("");
-  const { serviceInfo, mobile } = useContext(ContextStatus);
+  const {mobile } = useContext(ContextStatus);
   const [pickFromlist, setPickFromlist] = useState([]);
   const [page, setPage] = useState(1);
   const handleChange = (event, value) => {
@@ -35,14 +35,11 @@ export default function MovieList(prop) {//prop: movieList, page
       //prop.movielist: "now_playing", "popular", "now_playing", "upcoming"
       let url;
   
-      // if(prop.type==="list") url = `https://api.themoviedb.org/3/movie/${prop.movieList}?language=en-US&page=${page}`;
-      // else if(prop.type==="genres") url = `https://api.themoviedb.org/3/list/${prop.movieList}?`;
-      // else if(prop.type==="collection") url = `https://api.themoviedb.org/3/collection/${prop.movieList}?language=en-US`;
-      // else if (prop.type==="favorite") url = `https://api.themoviedb.org/3/account/${serviceInfo.account}/favorite/movies?page=${page}`;
-      if(prop.type==="list") url = `https://fakeapi.meitoc.net/redirect/9La81A3m223aawsQ/3/movie/${prop.movieList}?language=en-US&page=${page}`;
-      else if(prop.type==="genres") url = `https://fakeapi.meitoc.net/redirect/9La81A3m223aawsQ/3/list/${prop.movieList}?`;
-      else if(prop.type==="collection") url = `https://fakeapi.meitoc.net/redirect/9La81A3m223aawsQ/3/collection/${prop.movieList}?language=en-US`;
-      else if (prop.type==="favorite") url = `https://fakeapi.meitoc.net/redirect/9La81A3m223aawsQ/3/account/${serviceInfo.account}/favorite/movies?page=${page}`;
+      if(prop.type==="list") url = `https://movie.meitoc.net/redirect/9La81A3m223aawsQ/3/movie/${prop.movieList}?language=en-US&page=${page}`;
+      else if(prop.type==="genres") url = `https://movie.meitoc.net/redirect/9La81A3m223aawsQ/3/list/${prop.movieList}`;
+      else if(prop.type==="genres_list") url = `https://movie.meitoc.net/redirect/9La81A3m223aawsQ/3/discover/movie?with_genres=${prop.movieList}&language=en-US`;
+      else if(prop.type==="collection") url = `https://movie.meitoc.net/redirect/9La81A3m223aawsQ/3/collection/${prop.movieList}?language=en-US`;
+      console.log(url);
       fetch(url, options)
         .then(response => response.json())
         .then(response => {
@@ -71,14 +68,14 @@ export default function MovieList(prop) {//prop: movieList, page
         .catch(err => console.error(err));
     }
     fetchData();
-},[pickFromlist,serviceInfo,prop.pick,prop.page, prop.movieList, prop.query,prop.type,page]);
+},[pickFromlist,prop.pick,prop.page, prop.movieList, prop.query,prop.type,page]);
   if(movieList==="") return(<CircularProgress />);
   else if(movieList==="empty") return null;
   else {
     return(
       <>
         <Container fixed
-        sx={prop.fullScreen===true?{width: mobile?"80vw":"100vw", display: "flex", flexDirection: "column", alignItems:"center"}:{width: "100%", height: 520, display: "flex"}}>
+        sx={prop.fullScreen===true?{width: mobile?"90vw":"100vw", display: "flex", flexDirection: "column", alignItems:"center"}:{width: "100%", height: 520, display: "flex"}}>
           {
             <>
               <ImageList sx={prop.fullScreen===true?{ width: "100%", display: "flex", justifyContent:"center",flexWrap:"wrap" }:{ width: "100%", maxHeight: 480 , display: "flex", flexDirection: mobile?"column":"row"}}>
